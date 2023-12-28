@@ -1,0 +1,104 @@
+{
+    "name": "Yukki Music Bot",
+    "description": "Telegram Group Calls streaming bot with some useful features, written in Python with Pyrogram and Py-Tgcalls. Supporting platforms like Youtube, Spotify, Resso, AppleMusic, Soundcloud and M3u8 Links.",
+    "logo": "https://telegra.ph/file/c0e014ff34f34d1056627.png",
+    "keywords": [
+    "python3",
+    "telegram",
+    "bot",
+    "Yukki",
+    "YukkiMusicBot",
+    "telegram-bot",
+    "pyrogram"
+    ],
+    "stack": "container",
+    "env": {
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "23668843",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "7a53aadcfcd1196736c1951d00d11384",
+        "required": true
+      },
+      "AUTO_LEAVING_ASSISTANT": {
+        "description": "If you want your assistant to leave all chats automatically after some time.",
+        "value": "True",
+        "required": false
+      },
+      "BOT_TOKEN": {
+        "description": "A Bot's token from Botfather",
+        "value": "6331458585:AAEzdFg-0T1KzLQMDsu0sUPzqzSjqKcXk34",
+        "required": true
+      },
+      "MONGO_DB_URI": {
+        "description": "Get a mongodb url from https://cloud.mongodb.com . You can leave it blank if you want , bot will use Yukki's database for you.",
+        "value": "mongodb+srv://miramusict:miramusict@cluster0.o7jaw5o.mongodb.net/?retryWrites=true&w=majority",
+        "required": true
+      },
+      "MUSIC_BOT_NAME": {
+        "description": "A name for your Music Bot. Please don't use ascii characters",
+        "value": "Mira",
+        "required": true
+      },
+      "OWNER_ID": {
+        "description": "The user id(s) of user(s) whom you would like to add as a OWNER. Multiple values shall be seperated with a space.",
+        "value": "6570358533",
+        "required": true
+      },
+      "STRING_SESSION": {
+        "description": "A Pyrogram String Session. One Assistant is Compulsory.",
+        "value": "1ApWapzMBuyG1h3r-gUgWraEDvTQV15LA5PHo3RffQ70Tj4HgWXKinIfigYyMmzdfSARFuR6JolPEu7fqKyuqgYiROawRNV0XNLZZopVAlxm-x51rtwgSRNG2nyCgoGJbrLm5ugx8zjaAXAaVtb51jX_YFXnl1pLQpB1xdNE0_dG1SJXMwHHorwBHGLsPZyJ6NUrbcf_5zrwtUpKrK2u1F1kcu8ZD0CQItKV8UV9PnDA0h7hciqABs2HkLwhK5_2Xs5KB_c2IEoJiePXi2OQmWU_R0wk_ScHXO3V2EFEbuV6stu6V939VJTojh5SLPSWdY5AVnLkkqHPwETLb-dNlvNRmX-uZg8w=",
+        "required": true
+      },
+      "HEROKU_API_KEY": {
+        "description": "Your Heroku account's API key",
+        "value": "91306931-cc8e-4915-8f0b-30b390c3b3ee",
+        "required": false
+      },
+      "HEROKU_APP_NAME": {
+        "description": "Your heroku app/bot's name",
+        "value": "",
+        "required": false
+      },
+      "LOG_GROUP_ID": {
+        "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Use only Group. Please don't use Channel ID.",
+        "value": "-1002041220148",
+        "required": true
+      },
+      "UPSTREAM_REPO": {
+        "description": "If you dont know this, Leave as it is",
+        "value": "https://github.com/BALVX/M",
+        "required": true
+      },
+      "GIT_TOKEN": {
+        "description": "If you dont know this, Leave as it is",
+        "value": "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",
+        "required": true
+      },
+      "UPSTREAM_BRANCH": {
+        "description": "Upstream Repo's Branch Name",
+        "value": "master",
+        "required": true
+      }
+    },
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+          {
+              "url": "heroku/nodejs"
+          },
+          {
+              "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+          }
+      ],
+      "formation": {
+          "worker": {
+              "quantity": 1,
+              "size": "free"
+          }
+      }
+  }
