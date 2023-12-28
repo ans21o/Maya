@@ -7,32 +7,36 @@
 #
 # All rights reserved.
 
-from pyrogram import filters
-
-import config
-from strings import get_command
+from config import LOG, LOG_GROUP_ID
 from YukkiMusic import app
-from YukkiMusic.misc import SUDOERS
-from YukkiMusic.utils.database import add_off, add_on
-from YukkiMusic.utils.decorators.language import language
-
-# Commands
-LOGGER_COMMAND = get_command("LOGGER_COMMAND")
+from YukkiMusic.utils.database import is_on_off
 
 
-@app.on_message(filters.command(LOGGER_COMMAND) & SUDOERS)
-@language
-async def logger(client, message, _):
-    usage = _["log_1"]
-    if len(message.command) != 2:
-        return await message.reply_text(usage)
-    state = message.text.split(None, 1)[1].strip()
-    state = state.lower()
-    if state == "enable":
-        await add_on(config.LOG)
-        await message.reply_text(_["log_2"])
-    elif state == "disable":
-        await add_off(config.LOG)
-        await message.reply_text(_["log_3"])
-    else:
-        await message.reply_text(usage)
+async def play_logs(message, streamtype):
+    if await is_on_off(LOG):
+        if message.chat.username:
+            chatusername = f"@{message.chat.username}"
+        else:
+            chatusername = "Private Group"
+        logger_text = f"""
+**Mira PLAY LOG**
+
+**Chat:** {message.chat.title} [`{message.chat.id}`]
+**User:** {message.from_user.mention}
+**Username:** @{message.from_user.username}
+**User ID:** `{message.from_user.id}`
+**Chat Link:** {chatusername}
+
+**Query:** {message.text}
+
+**StreamType:** {streamtype}"""
+        if message.chat.id != LOG_GROUP_ID:
+            try:
+                await app.send_message(
+                    LOG_GROUP_ID,
+                    f"{logger_text}",
+                    disable_web_page_preview=True,
+                )
+            except:
+                pass
+        return
